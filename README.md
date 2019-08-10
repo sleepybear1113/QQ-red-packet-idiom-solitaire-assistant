@@ -4,7 +4,7 @@
 
 而且不需要联网权限，全靠本地文件，用auto.js写的，autojs是Android上免root类似按键精灵的工具
 
-[点击此处下载apk](https://github.com/sleepybear1113/QQ-red-packet-idiom-solitaire-assistant/raw/master/QQ%E7%BA%A2%E5%8C%85%E6%88%90%E8%AF%AD%E6%8E%A5%E9%BE%99%E5%8A%A9%E6%89%8B_v2.0.5.apk)
+[点击此处下载apk](https://github.com/sleepybear1113/QQ-red-packet-idiom-solitaire-assistant/raw/master/QQ%E7%BA%A2%E5%8C%85%E6%88%90%E8%AF%AD%E6%8E%A5%E9%BE%99%E5%8A%A9%E6%89%8B.apk)
 
 
 
