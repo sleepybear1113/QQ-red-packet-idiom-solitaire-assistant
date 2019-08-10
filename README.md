@@ -4,6 +4,10 @@
 
 而且不需要联网权限，全靠本地文件
 
+[点击此处下载apk](https://github.com/sleepybear1113/QQ-red-packet-idiom-solitaire-assistant/raw/master/QQ%E7%BA%A2%E5%8C%85%E6%88%90%E8%AF%AD%E6%8E%A5%E9%BE%99%E5%8A%A9%E6%89%8B_v2.0.5.apk)
+
+
+
 # 咋用
 
 下载apk，安装就完成一半了。需要无障碍功能才能使用。而一般的手机打开这个APP，就会自动打开设置，进入无障碍界面，在安装的应用里面选择这个APP，名字应该叫做“QQ红包成语接龙助手”吧。
