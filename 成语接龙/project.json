@@ -1,0 +1,10 @@
+{
+    "name": "QQ红包成语接龙助手",
+    "main": "main.js",
+    "ignore": [
+        "build"
+    ],
+    "packageName": "com.xjx.cyjl",
+    "versionName": "2.0.0",
+    "versionCode": 20
+}
