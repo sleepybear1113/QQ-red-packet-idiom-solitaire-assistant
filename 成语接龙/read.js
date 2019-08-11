@@ -1,3 +1,5 @@
+let count = 0;
+
 /**
  * 一个通用的读取文件的函数
  * 作用：在第一次运行的时候将文件写入本地，在之后的运行中，可以修改本地成语文件
@@ -32,7 +34,9 @@ function readCYFile() {
     let app_path = "chengyu.txt";
 
     let lines = createAndReadFile(app_path, sdcard_path);
-    let list = [];
+    count = lines.length;
+
+    let map = new java.util.HashMap(100);
 
     for (let i = 0; i < lines.length; i++) {
         let sp = lines[i].split("@");
@@ -40,10 +44,14 @@ function readCYFile() {
         let py0 = py[0];
         let py1 = py[py.length - 1];
 
-        let s = [sp[0], py0, py1];
-        list.push(s);
+        let py0Map = map.get(py0);
+        if (py0Map == null) {
+            map.put(py0, [sp[0], py1]);
+        } else {
+            py0Map.push([sp[0], py1]);
+        }
     }
-    return list;
+    return map;
 }
 
 
@@ -75,7 +83,7 @@ toastLog("正在读取成语列表，请稍后");
 let cyFile = readCYFile();
 let nearDeadFile = readNearDeadFile();
 let deadFile = readDeadFile();
-toastLog("成语列表读取完毕，共" + cyFile.length + "行");
+toastLog("成语列表读取完毕，共" + count + "个");
 
 let out = {};
 out.cyFile = cyFile;

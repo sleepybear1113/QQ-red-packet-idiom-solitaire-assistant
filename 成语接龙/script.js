@@ -57,7 +57,7 @@ function getLastPinYin() {
  * @returns {*[]} 返回筛选出来的列表集合
  */
 function filterList(first, last) {
-    let list0 = [];//未经过筛选的集合
+    let list0 = allList.get(first);//从HashMap中获取首字母对应的全部成语集合
     let list1 = [];//经过筛选的集合
 
     //如果集合为空，那么表示首尾音相同，将首音加入尾音
@@ -69,18 +69,17 @@ function filterList(first, last) {
         }
     }
 
-    //遍历全部集合
-    for (let i = 0; i < allList.length; i++) {
-        let item = allList[i];
-        let py0 = item[1];
-        let py1 = item[2];
+    //若为空那就直接返回
+    if (list0 == null) {
+        return [[], false];
+    } else {
+        //如果要求尾音的那就遍历
+        if (last != null) {
+            for (let i = 0; i < list0.length; i++) {
+                let item = list0[i];
+                let py0 = item[1];
+                let py1 = item[1];
 
-        //如果首音匹配，加入未筛选集合
-        if (first === py0) {
-            list0.push(item);
-
-            //如果尾音不为空，那么对尾音中的音进行遍历，将符合的音加入筛选集合
-            if (last != null) {
                 for (let j = 0; j < last.length; j++) {
                     if (last[j] === py1) {
                         list1.push(item);

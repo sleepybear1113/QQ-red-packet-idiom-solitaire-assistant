@@ -68,6 +68,7 @@ window.exit.setOnTouchListener(function (view, event) {
         case event.ACTION_MOVE:
             //如果按下的时间超过xx秒判断为长按，退出
             if (new Date().getTime() - downTime > 500) {
+                toastLog("退出脚本！");
                 exit();
             }
             return true;
@@ -141,7 +142,7 @@ window.setting3.click(() => {
 
 window.info.click(() => {
     let title = "说明 by sleepybear";
-    let msg = "用来QQ红包的成语接龙\n在手机内部储存的脚本文件夹→QQ红包成语接龙助手文件夹中有所有成语的的文本，打开可修改接龙死局和全部成语\n点击确定复制使用网址链接";
+    let msg = "用来QQ红包的成语接龙\n在手机内部储存的脚本文件夹→QQ红包成语接龙助手文件夹中有所有成语的的文本，打开可修改接龙死局和全部成语\n点击确定复制(使用方法)的网址链接";
     confirm(title, msg).then(isOk => {
         if (isOk) {
             let url = "https://github.com/sleepybear1113/QQ-red-packet-idiom-solitaire-assistant/blob/master/README.md";
