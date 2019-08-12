@@ -57,8 +57,8 @@ function getLastPinYin() {
  * @returns {*[]} 返回筛选出来的列表集合
  */
 function filterList(first, last) {
-    let list0 = allList.get(first);//从HashMap中获取首字母对应的全部成语集合
-    let list1 = [];//经过筛选的集合
+    let list0 = allList.get(first); //从HashMap中获取首字母对应的全部成语集合
+    let list1 = []; //经过筛选的集合
 
     //如果集合为空，那么表示首尾音相同，将首音加入尾音
     if (last != null) {
@@ -71,7 +71,9 @@ function filterList(first, last) {
 
     //若为空那就直接返回
     if (list0 == null) {
-        return [[], false];
+        return [
+            [], false
+        ];
     } else {
         //如果要求尾音的那就遍历
         if (last != null) {
@@ -89,7 +91,7 @@ function filterList(first, last) {
         }
     }
 
-    let ret;//返回的结果
+    let ret; //返回的结果
 
     //以下true代表经过筛选（包含不设置筛选）后的集合。false代表筛选后没有结果，返回的是筛选前的结果
     if (last != null) {
@@ -113,12 +115,12 @@ function filterList(first, last) {
  */
 function getRandomFromList(first, last, isStrictMatch) {
     let result = filterList(first, last);
-    let symbol = result[1];//筛选成功标志
-    let list = result[0];//筛选后的列表
-    let length = list.length;//筛选后的列表长度
+    let symbol = result[1]; //筛选成功标志
+    let list = result[0]; //筛选后的列表
+    let length = list.length; //筛选后的列表长度
 
-    let chengyu;//最后要返回的成语
-    let r = -1;//随机数
+    let chengyu; //最后要返回的成语
+    let r = -1; //随机数
     if (length > 0) {
         r = rnd(0, length - 1);
     }
@@ -182,6 +184,20 @@ function send(opt, isDirectlySend, isStrictMatch) {
     let chengyu = getRandomFromList(first, last, isStrictMatch);
     if (chengyu == null) {
         return null;
+    } else if (chengyu.length !== 4) {//这里判断成语长度是否为4的原因，是因为，不知道为什么可能会出现不为4或者出现英文，所以重试
+        console.log("成语长度不为4，可能查找出现问题，开始重试");
+        for (let m = 0; m < 20; m++) {
+            console.log("第" + (m + 1) + "次重试");
+            chengyu = getRandomFromList(first, last, isStrictMatch);
+            if (chengyu.length === 4) {
+                break;
+            }
+        }
+    }
+
+    if (chengyu.length !== 4) {
+        toastLog("程序开小差了，好像没找到");
+        return null;
     }
 
     inputText(chengyu, isDirectlySend);
@@ -199,7 +215,7 @@ function inputText(text, isDirectlySend) {
         input_view.setText(text);
         if (isDirectlySend === true) {
             let send_btn = id("fun_btn").findOnce();
-            threads.start(function () {
+            threads.start(function() {
                 sleep(150);
                 clickItemInCenter(send_btn);
             });
@@ -208,6 +224,3 @@ function inputText(text, isDirectlySend) {
 }
 
 module.exports = send;
-
-
-
