@@ -2,7 +2,7 @@
 
 这是一个Android上用于QQ的成语接龙红包的APP，可以用来辅助抢/捣乱红包，最低要求Android 7.0
 
-而且不需要联网权限，全靠本地文件，用auto.js写的，autojs是Android上免root类似按键精灵的工具
+而且不需要联网权限，全靠本地文件（v3.0.0新增联网更新词库功能），用auto.js写的，autojs是Android上免root类似按键精灵的工具
 
 [点击此处下载apk](https://github.com/sleepybear1113/QQ-red-packet-idiom-solitaire-assistant/raw/master/QQ%E7%BA%A2%E5%8C%85%E6%88%90%E8%AF%AD%E6%8E%A5%E9%BE%99%E5%8A%A9%E6%89%8B.apk)
 
@@ -75,6 +75,8 @@ APP启动之后，会在手机内部储存下面生成一个脚本文件夹，�
 2019/08/12 v2.1.2 删除nearDead.txt，从dead.txt中自动查询。修改其中个别成语的错音。需要删除本地的文件才能生效，详见运行APP后的说明按钮的文件路径。不过其中还是有不少错音的。
 
 2019/08/12 v2.1.3 更新修正内置成语库的读音
+
+2019/08/13 v3.0.0 修复可能会出现的非四字成语，更新词库，增加联网更新操作（没啥用的功能）
 
 # 其他
 
