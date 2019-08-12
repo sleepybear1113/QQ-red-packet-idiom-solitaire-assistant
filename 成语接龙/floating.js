@@ -5,7 +5,7 @@ let window = floaty.window(
     <vertical>
         <horizontal>
             <button id="move" padding="0" text="移动" w="20" h="20" bg="#77ffffff" textSize="8sp"/>
-            <button id="info" padding="0" text="说明" w="20" h="20" bg="#77e0e0e0" textSize="8sp"/>
+            <button id="more" padding="0" text="更多" w="20" h="20" bg="#77e0e0e0" textSize="8sp"/>
             <button id="exit" padding="0" text="退出" w="20" h="20" bg="#77ffffff" textSize="8sp"/>
         </horizontal>
         <horizontal>
@@ -17,20 +17,20 @@ let window = floaty.window(
     </vertical>
 );
 window.setPosition(parseInt(width * 0.75), parseInt(height * 0.1));
-setInterval(() => {
-}, 1000);
+setInterval(() => {}, 1000);
 window.exitOnClose();
 let x, y, windowX, windowY, downTime;
 
 //=======以上是悬浮窗设置============
 
-let isStrictMatch = false;//是否严格匹配成语末尾
-let optionSend = false;//是否立即发送
-let opt = 0;//成语范围选项
-let send;//send函数，最后会加载函数
+let isStrictMatch = false; //是否严格匹配成语末尾
+let optionSend = false; //是否立即发送
+let opt = 0; //成语范围选项
+let send; //send函数，最后会加载函数
+let download;
 
 //这个函数是对应悬浮窗的移动
-window.move.setOnTouchListener(function (view, event) {
+window.move.setOnTouchListener(function(view, event) {
     switch (event.getAction()) {
         case event.ACTION_DOWN:
             x = event.getRawX();
@@ -56,7 +56,7 @@ window.move.setOnTouchListener(function (view, event) {
 });
 
 
-window.exit.setOnTouchListener(function (view, event) {
+window.exit.setOnTouchListener(function(view, event) {
     switch (event.getAction()) {
         case event.ACTION_DOWN:
             x = event.getRawX();
@@ -85,7 +85,7 @@ window.exit.setOnTouchListener(function (view, event) {
 //对应设置1
 function dialog1() {
     let a = ["直接发送成语", "不发送，留在输入框中"];
-    dialogs.select("点击生成后", a, function (index) {
+    dialogs.select("点击生成后", a, function(index) {
         console.log(index, a[index]);
         if (index === 0) {
             optionSend = true;
@@ -98,7 +98,7 @@ function dialog1() {
 //对应设置2
 function dialog2() {
     let a = ["全部成语列表", "全部成语列表(首尾读音相同)", "以可能造成死局结尾的成语", "输入死局"];
-    dialogs.select("成语范围", a, function (index) {
+    dialogs.select("成语范围", a, function(index) {
         console.log(index, a[index]);
         if (index >= 0) {
             opt = index;
@@ -109,7 +109,7 @@ function dialog2() {
 //对应设置3
 function dialog3() {
     let a = ["尽量满足条件范围，否则随机接龙", "严格满足条件范围"];
-    dialogs.select("对于设置2中成语的筛选", a, function (index) {
+    dialogs.select("对于设置2中成语的筛选", a, function(index) {
         console.log(index, a[index]);
         if (index === 0) {
             isStrictMatch = false;
@@ -140,9 +140,22 @@ window.setting3.click(() => {
     dialog3();
 });
 
-window.info.click(() => {
+
+function more() {
+    let a = ["辅助APP说明", "联网更新词库选项"];
+    dialogs.select("更多", a, function(index) {
+        console.log(index, a[index]);
+        if (index == 0) {
+            info();
+        } else if (index == 1) {
+            update();
+        }
+    });
+}
+
+function info() {
     let title = "说明 by sleepybear";
-    let msg = "用来QQ红包的成语接龙\n在手机内部储存的脚本文件夹→QQ红包成语接龙助手文件夹中有所有成语的的文本，打开可修改接龙死局和全部成语\n点击确定复制(使用方法)的网址链接";
+    let msg = "〇这是一个用来辅助QQ红包的成语接龙的脚本APP\n〇在手机内部储存[(sdcard/脚本/QQ红包成语接龙助手)文件夹]，有所有成语的词库(chengyu.txt)，和死局的成语尾音(dead.txt)，可修改添加词库中未收录的词\n〇当修改词库导致APP无法正常使用时，可以选择更新词库或者将修改的文件删除，系统会复制加载默认词库文件\n〇点击“确定”复制(使用方法)的网址链接";
     confirm(title, msg).then(isOk => {
         if (isOk) {
             let url = "https://github.com/sleepybear1113/QQ-red-packet-idiom-solitaire-assistant/blob/master/README.md";
@@ -151,7 +164,36 @@ window.info.click(() => {
             console.log(url);
         }
     });
+}
+
+function update() {
+    let a = ["返回×", "更新总成语词库(大小约1MB，8秒)", "更新死局词语(1KB)"];
+    let fileNameCY = "chengyu.txt";
+    let fileNameDead = "dead.txt";
+    let path = "/sdcard/脚本/QQ红包成语接龙助手/";
+    let url = "https://raw.githubusercontent.com/sleepybear1113/QQ-red-packet-idiom-solitaire-assistant/master/%E6%88%90%E8%AF%AD%E6%8E%A5%E9%BE%99/";
+
+    dialogs.select("更新选项(在我自己用的时候，词库可能会变化，所以将词库以更新的形式呈现，这样就不用重新下载安装APP了)", a, function(index) {
+        console.log(index, a[index]);
+        if (index === 1) {
+            threads.start(function() {
+                toastLog("开始更新总成语词库");
+                download(url + fileNameCY, path + fileNameCY, 1024 * 700)
+            });
+        } else if (index === 2) {
+            threads.start(function() {
+                toastLog("开始更新死局尾音文档");
+                download(url + fileNameDead, path + fileNameDead, 200)
+            });
+        }
+    });
+}
+
+window.more.click(() => {
+    more();
 });
 
+//加载下载模块
+download = require("./download.js");
 //加载实际脚本
-send = require("script.js");
+send = require("./script.js");
