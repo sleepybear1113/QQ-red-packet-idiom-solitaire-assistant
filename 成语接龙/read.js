@@ -1,4 +1,6 @@
 let count = 0;
+let deadList = [];
+let nearDeadList = [];
 
 /**
  * 一个通用的读取文件的函数
@@ -37,12 +39,20 @@ function readCYFile() {
     count = lines.length;
 
     let map = new java.util.HashMap(100);
+    console.log("能造成死局的成语:");
 
     for (let i = 0; i < lines.length; i++) {
         let sp = lines[i].split("@");
         let py = sp[1].split(":");
         let py0 = py[0];
         let py1 = py[py.length - 1];
+
+        for (let j = 0; j < deadList.length; j++) {
+            if (deadList[j] === py1) {
+                nearDeadList.push(py0);
+                console.log(sp);
+            }
+        }
 
         let py0Map = map.get(py0);
         if (py0Map == null) {
@@ -54,19 +64,6 @@ function readCYFile() {
     return map;
 }
 
-
-//读取存放的可以往下接死局的成语的文件
-function readNearDeadFile() {
-    let sdcard_path = "/sdcard/脚本/QQ红包成语接龙助手/nearDead.txt";
-    let app_path = "nearDead.txt";
-    let getList = createAndReadFile(app_path, sdcard_path);
-    let list = [];
-    for (let i = 0; i < getList.length; i++) {
-        list.push(getList[i]);
-    }
-    return list;
-}
-
 //读取死局结尾音的成语的文件
 function readDeadFile() {
     let sdcard_path = "/sdcard/脚本/QQ红包成语接龙助手/dead.txt";
@@ -76,18 +73,18 @@ function readDeadFile() {
     for (let i = 0; i < getList.length; i++) {
         list.push(getList[i]);
     }
+    console.log("死局结尾成语：", list);
     return list;
 }
 
 toastLog("正在读取成语列表，请稍后");
+deadList = readDeadFile();
 let cyFile = readCYFile();
-let nearDeadFile = readNearDeadFile();
-let deadFile = readDeadFile();
 toastLog("成语列表读取完毕，共" + count + "个");
 
 let out = {};
 out.cyFile = cyFile;
-out.nearDeadFile = nearDeadFile;
-out.deadFile = deadFile;
+out.nearDeadFile = nearDeadList;
+out.deadFile = deadList;
 module.exports = out;
 

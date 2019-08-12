@@ -471,6 +471,7 @@
 半间不界@ban:jie
 半截入土@ban:tu
 半斤八两@ban:liang
+半老徐娘@ban:niang
 半路出家@ban:jia
 半面之交@ban:jiao
 半面之旧@ban:jiu
@@ -3971,7 +3972,7 @@
 重山复岭@zhong:ling
 重山复水@zhong:shui
 重山峻岭@zhong:ling
-重生爷娘@zhong:niang
+重生爷娘@chong:niang
 重手累足@zhong:zu
 重温旧业@zhong:ye
 重熙累绩@zhong:ji
@@ -7650,7 +7651,7 @@
 鬼神莫测@gui:ce
 鬼使神差@gui:cha
 鬼头鬼脑@gui:nao
-鬼蜮伎俩@gui:lia
+鬼蜮伎俩@gui:liang
 诡计多端@gui:duan
 诡谲多变@gui:bian
 诡谲怪诞@gui:dan
@@ -8236,14 +8237,14 @@
 鬼哭神惊@gui:jing
 鬼哭粟飞@gui:fei
 鬼哭天愁@gui:chou
-鬼魅伎俩@gui:lia
+鬼魅伎俩@gui:liang
 鬼怕恶人@gui:ren
 鬼泣神嚎@gui:hao
 鬼泣神号@gui:hao
 鬼设神使@gui:shi
 鬼头滑脑@gui:nao
 鬼形怪状@gui:zhuang
-鬼蜮技俩@gui:lia
+鬼蜮技俩@gui:liang
 鬼吒狼嚎@gui:hao
 鬼咤狼嚎@gui:hao
 鬼抓狼嚎@gui:hao
@@ -11810,7 +11811,6 @@
 救焚投薪@jiu:xin
 救焚益薪@jiu:xin
 救焚拯溺@jiu:ni
-救过不给@jiu:gei
 救过不赡@jiu:shan
 救过不暇@jiu:xia
 救火拯溺@jiu:ni
@@ -14859,7 +14859,7 @@
 目不忍见@mu:jian
 目不忍视@mu:shi
 目不识书@mu:shu
-目不暇给@mu:gei
+目不暇给@mu:ji
 目不斜视@mu:shi
 目不知书@mu:shu
 目成心许@mu:xu
@@ -17605,7 +17605,7 @@
 任重至远@ren:yuan
 刃迎缕解@ren:jie
 日薄西山@ri:shan
-日不暇给@ri:gei
+日不暇给@ri:ji
 日不移晷@ri:gui
 日长一线@ri:xian
 日东月西@ri:xi
@@ -17888,7 +17888,7 @@
 人约黄昏@ren:hun
 人中龙虎@ren:hu
 人自为政@ren:zheng
-人足家给@ren:gei
+人足家给@ren:ji
 仁民爱物@ren:wu
 仁人君子@ren:zi
 仁人义士@ren:shi
@@ -26905,7 +26905,7 @@
 雍容闲雅@yong:ya
 雍容雅步@yong:bu
 饔飧不饱@yong:bao
-饔飧不给@yong:gei
+饔飧不给@yong:ji
 饔飧不济@yong:ji
 永不磨灭@yong:mie
 永垂青史@yong:shi
@@ -27024,7 +27024,7 @@
 有凭有据@you:ju
 有气没力@you:li
 有气无烟@you:yan
-有三有俩@you:lia
+有三有俩@you:liang
 有色眼镜@you:jing
 有生力量@you:liang
 有生之年@you:nian
