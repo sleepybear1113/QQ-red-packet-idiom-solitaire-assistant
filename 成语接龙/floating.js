@@ -173,17 +173,19 @@ function update() {
     let path = "/sdcard/脚本/QQ红包成语接龙助手/";
     let url = "https://raw.githubusercontent.com/sleepybear1113/QQ-red-packet-idiom-solitaire-assistant/master/%E6%88%90%E8%AF%AD%E6%8E%A5%E9%BE%99/";
 
-    dialogs.select("更新选项(在我自己用的时候，词库可能会变化，所以将词库以更新的形式呈现，这样就不用重新下载安装APP了)", a, function(index) {
+    dialogs.select("更新选项(在我自己用的时候，词库可能会变化，所以将词库以更新的形式呈现，这样就不用重新下载安装APP了)\n更新完请重启APP", a, function(index) {
         console.log(index, a[index]);
         if (index === 1) {
             threads.start(function() {
                 toastLog("开始更新总成语词库");
-                download(url + fileNameCY, path + fileNameCY, 1024 * 700)
+                download(url + fileNameCY, path + fileNameCY, 1024 * 700);
+                toastLog("请重启APP以重新加载词库");
             });
         } else if (index === 2) {
             threads.start(function() {
                 toastLog("开始更新死局尾音文档");
-                download(url + fileNameDead, path + fileNameDead, 200)
+                download(url + fileNameDead, path + fileNameDead, 200);
+                toastLog("请重启APP以重新加载词库");
             });
         }
     });
